@@ -21,7 +21,7 @@ public class CharacterController : MonoBehaviour
     public bool isLastGrid = false;
 
     public bool isHasReachToBus = false;
-
+    Vector2Int startCoordinates;
     private void Awake()
     {
         pathfinding = FindObjectOfType<PathFinding>();
@@ -138,7 +138,12 @@ public class CharacterController : MonoBehaviour
     }
     void MoveCharacter()
     {
-        Vector2Int startCoordinates = new Vector2Int(Mathf.RoundToInt(characterTransform.position.x), Mathf.RoundToInt(characterTransform.position.z));
+        if (characterTransform.position.x > 5)
+        {
+            startCoordinates = new Vector2Int(Mathf.RoundToInt(characterTransform.position.x - 1), Mathf.RoundToInt(characterTransform.position.z));
+        }
+        else
+            startCoordinates = new Vector2Int(Mathf.RoundToInt(characterTransform.position.x), Mathf.RoundToInt(characterTransform.position.z));
         Debug.Log("Baþlangýç Koordinatlarý: " + startCoordinates);
         Debug.Log("Hedef Koordinatlarý: " + targetCoordinates);
 
